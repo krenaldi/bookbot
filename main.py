@@ -5,8 +5,16 @@ def main():
   char_count = get_char_count(text)
   print(f"--- Begin report of {book_path} ---")
   print(f"{word_count} words found in the document\n")
-  print(char_count)
+  format_char_count_log(char_count)
   print(f"--- End report ---")
+
+def format_char_count_log(char_count):
+    # Sort the list in descending order based on the values
+    char_count.sort(key=lambda x: list(x.values())[0], reverse=True)
+    for dictionary in char_count:
+        for key in dictionary:
+            value = dictionary[key]
+            print(f"The '{key}' character was found {value} times.")
 
 def get_char_count(text):
     char_dict = {}
